@@ -4,9 +4,8 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                mvn clean 
-                
-            }
+               sh " mvn clean "
+             }
         }
         stage('test') {
             steps {
