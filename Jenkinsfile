@@ -15,6 +15,7 @@ pipeline {
         stage('deplloy') {
             steps {
                 echo "it's depoloying"
+                sh "pwd"
             }
         }
     }
