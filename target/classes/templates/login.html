@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<main class="page-shell">
+    <section class="hero-panel">
+        <p class="eyebrow">Java Login App</p>
+        <h1>Sign in without a database</h1>
+        <p class="lead">A simple frontend and backend flow built with Spring Boot and Thymeleaf.</p>
+    </section>
+
+    <section class="card">
+        <h2>Login</h2>
+        <p class="hint">Use <strong>admin</strong> / <strong>admin123</strong> by default.</p>
+
+        <div class="error" th:if="${loginError}" th:text="${loginError}"></div>
+
+        <form th:action="@{/login}" th:object="${loginForm}" method="post" class="form-grid">
+            <label>
+                <span>Username</span>
+                <input type="text" th:field="*{username}" placeholder="Enter username" />
+                <small class="field-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
+            </label>
+
+            <label>
+                <span>Password</span>
+                <input type="password" th:field="*{password}" placeholder="Enter password" />
+                <small class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+            </label>
+
+            <button type="submit">Sign In</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>
