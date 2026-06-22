@@ -11,10 +11,24 @@
 .idea/
 *.iml
 .vscode/
+.classpath
+.project
+.settings/
 
 # OS files
 .DS_Store
 Thumbs.db
+
+# Editor swap and backup files
+*.swp
+*.swo
+*.tmp
+*.bak
+*.orig
+
+# JVM crash logs
+hs_err_pid*
+replay_pid*
 
 # Local environment files
 .env
