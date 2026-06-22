@@ -17,7 +17,7 @@ pipeline {
         stage('deploy') {
             steps {
                 sh '''
-                    export JENKINS_NODE_COOKIE=dontKillMe
+                    
 
                     nohup java -jar target/loginapp-0.0.1-SNAPSHOT.jar \
                         --server.port=8083 \
