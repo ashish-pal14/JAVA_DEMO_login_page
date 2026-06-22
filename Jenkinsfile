@@ -17,7 +17,7 @@ pipeline {
                 echo "it's depoloying"
                 sh "pwd"
 
-                sh 'nohup java -jar target/loginapp-0.0.1-SNAPSHOT.jar --server.port=8083 > logs.cat &'
+                sh 'nohup java -jar target/loginapp-0.0.1-SNAPSHOT.jar --server.port=8083 > logs.cat  2>&1 &'
             }
         }
     }
