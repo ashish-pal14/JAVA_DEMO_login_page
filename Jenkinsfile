@@ -23,15 +23,7 @@ pipeline {
                         --server.port=8083 \
                         > logs.cat 2>&1 &
 
-                    echo $! > app.pid
-
-                    sleep 10
-
-                    cat logs.cat || true
-
-                    ps -fp $(cat app.pid) || true
-
-                    ss -tulnp | grep 8083 || true
+                   
                 '''
             }
         }
