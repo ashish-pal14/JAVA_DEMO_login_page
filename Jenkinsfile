@@ -23,7 +23,8 @@ pipeline {
         stage('deploy') {
             steps {
                 sh '''
-                    
+                    PID=$(lsof -ti:8083)
+                    kill -15 "$PID"
                     export JENKINS_NODE_COOKIE=dshbfiujhdf
                     nohup java -jar target/loginapp-0.0.1-SNAPSHOT.jar \
                         --server.port=8083 \
