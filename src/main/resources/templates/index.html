@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workshop Store</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<main class="page-shell landing-shell">
+    <section class="hero-panel hero-art">
+        <p class="eyebrow">Crafted workshop website</p>
+        <h1>Build, browse, and buy tools that feel made for the craft.</h1>
+        <p class="lead">A polished workshop storefront with sign in and sign up entry points, made with Spring Boot and Thymeleaf.</p>
+
+        <div class="action-row">
+            <a class="link-button" th:href="@{/login}">Sign In</a>
+            <a class="link-button link-button-secondary" th:href="@{/signup}">Sign Up</a>
+        </div>
+
+        <div class="feature-grid">
+            <article>
+                <strong>Handpicked</strong>
+                <span>Tools, materials, and kits</span>
+            </article>
+            <article>
+                <strong>Fast checkout</strong>
+                <span>Simple account flow</span>
+            </article>
+            <article>
+                <strong>Shop ready</strong>
+                <span>Warm, modern storefront feel</span>
+            </article>
+        </div>
+    </section>
+
+    <section class="card showcase-card">
+        <p class="eyebrow">Featured workshop picks</p>
+        <div class="product-list">
+            <article class="product-card">
+                <span class="product-tag">New</span>
+                <h2>Precision Tool Kit</h2>
+                <p>Everything you need for careful workshop assembly.</p>
+            </article>
+            <article class="product-card">
+                <span class="product-tag">Popular</span>
+                <h2>Pro Workbench Set</h2>
+                <p>A sturdy setup for daily building and repairs.</p>
+            </article>
+            <article class="product-card">
+                <span class="product-tag">Best value</span>
+                <h2>Storage Wall System</h2>
+                <p>Keep your space organized and ready for action.</p>
+            </article>
+        </div>
+    </section>
+</main>
+</body>
+</html>

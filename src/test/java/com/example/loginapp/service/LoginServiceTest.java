@@ -26,4 +26,14 @@ class LoginServiceTest {
 
         assertThat(loginService.authenticate("admin", "wrong")).isFalse();
     }
+
+    @Test
+    void registerUpdatesCredentials() {
+        LoginService loginService = new LoginService("admin", "admin123");
+
+        loginService.register("maker", "tools123");
+
+        assertThat(loginService.authenticate("maker", "tools123")).isTrue();
+        assertThat(loginService.authenticate("admin", "admin123")).isFalse();
+    }
 }

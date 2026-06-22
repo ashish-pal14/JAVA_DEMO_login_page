@@ -1,6 +1,7 @@
 package com.example.loginapp.web;
 
 import com.example.loginapp.model.LoginForm;
+import com.example.loginapp.model.SignupForm;
 import com.example.loginapp.service.LoginService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping
@@ -20,12 +22,28 @@ public class AuthController {
         this.loginService = loginService;
     }
 
-    @GetMapping({"/", "/login"})
+    @GetMapping({"/", "/home"})
+    public String showLandingPage() {
+        return "index";
+    }
+
+    @GetMapping("/login")
     public String showLoginPage(Model model) {
         if (!model.containsAttribute("loginForm")) {
             model.addAttribute("loginForm", new LoginForm());
         }
+        if (model.containsAttribute("signupSuccess")) {
+            model.addAttribute("signupSuccess", model.asMap().get("signupSuccess"));
+        }
         return "login";
+    }
+
+    @GetMapping("/signup")
+    public String showSignupPage(Model model) {
+        if (!model.containsAttribute("signupForm")) {
+            model.addAttribute("signupForm", new SignupForm());
+        }
+        return "signup";
     }
 
     @PostMapping("/login")
@@ -41,6 +59,17 @@ public class AuthController {
         }
 
         model.addAttribute("username", loginForm.getUsername());
-        return "welcome";
+        return "shop";
+    }
+
+    @PostMapping("/signup")
+    public String processSignup(@Valid SignupForm signupForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            return "signup";
+        }
+
+        loginService.register(signupForm.getUsername(), signupForm.getPassword());
+        redirectAttributes.addFlashAttribute("signupSuccess", "Account created. Please sign in.");
+        return "redirect:/login";
     }
 }

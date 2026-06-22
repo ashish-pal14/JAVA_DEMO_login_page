@@ -3,38 +3,36 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Sign In</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
-<main class="page-shell">
-    <section class="hero-panel">
-        <p class="eyebrow">Java Login App</p>
-        <h1>Sign in without a database</h1>
-        <p class="lead">A simple frontend and backend flow built with Spring Boot and Thymeleaf.</p>
-    </section>
+<main class="page-shell center">
+    <section class="card auth-card">
+        <p class="eyebrow">Workshop access</p>
+        <h1>Sign in to continue</h1>
+        <p class="lead">Use the account you created on the sign-up page to enter the shop.</p>
 
-    <section class="card">
-        <h2>Login</h2>
-        <p class="hint">Use <strong>admin</strong> / <strong>admin123</strong> by default.</p>
-
+        <div class="success" th:if="${signupSuccess}" th:text="${signupSuccess}"></div>
         <div class="error" th:if="${loginError}" th:text="${loginError}"></div>
 
         <form th:action="@{/login}" th:object="${loginForm}" method="post" class="form-grid">
             <label>
                 <span>Username</span>
-                <input type="text" th:field="*{username}" placeholder="Enter username" />
+                <input type="text" th:field="*{username}" placeholder="Enter your username" />
                 <small class="field-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
             </label>
 
             <label>
                 <span>Password</span>
-                <input type="password" th:field="*{password}" placeholder="Enter password" />
+                <input type="password" th:field="*{password}" placeholder="Enter your password" />
                 <small class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
             </label>
 
             <button type="submit">Sign In</button>
         </form>
+
+        <p class="form-note">Need an account? <a th:href="@{/signup}">Sign up here</a>.</p>
     </section>
 </main>
 </body>

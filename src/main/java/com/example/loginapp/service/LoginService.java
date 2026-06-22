@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginService {
 
-    private final String validUsername;
-    private final String validPassword;
+    private String validUsername;
+    private String validPassword;
 
     public LoginService(
             @Value("${app.auth.username:admin}") String validUsername,
@@ -18,5 +18,10 @@ public class LoginService {
 
     public boolean authenticate(String username, String password) {
         return validUsername.equals(username) && validPassword.equals(password);
+    }
+
+    public void register(String username, String password) {
+        this.validUsername = username;
+        this.validPassword = password;
     }
 }
