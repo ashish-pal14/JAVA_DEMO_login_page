@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<main class="page-shell center">
+    <section class="card wide-card">
+        <p class="eyebrow">Account center</p>
+        <h1 th:text="${accountName}">Workshop Maker</h1>
+        <p class="lead">Membership: <strong th:text="${membershipLevel}">Gold Builder</strong></p>
+
+        <div class="account-stats">
+            <article>
+                <span>Loyalty points</span>
+                <strong th:text="${loyaltyPoints}">0</strong>
+            </article>
+            <article>
+                <span>Preferred store</span>
+                <strong>Downtown Workshop</strong>
+            </article>
+            <article>
+                <span>Support level</span>
+                <strong>Priority</strong>
+            </article>
+        </div>
+
+        <div class="action-row">
+            <a class="link-button" th:href="@{/support}">Support</a>
+            <a class="link-button link-button-secondary" th:href="@{/orders}">Orders</a>
+        </div>
+    </section>
+</main>
+</body>
+</html>

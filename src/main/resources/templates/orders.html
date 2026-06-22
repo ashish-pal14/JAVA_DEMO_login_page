@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orders</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<main class="page-shell center">
+    <section class="card wide-card">
+        <p class="eyebrow">Order history</p>
+        <h1>Recent orders</h1>
+
+        <div class="orders-grid">
+            <article class="order-card" th:each="order : ${orders}">
+                <h2 th:text="${order.orderNumber}">Order</h2>
+                <p th:text="${order.status}">Status</p>
+                <strong th:text="${order.total}">$0</strong>
+            </article>
+        </div>
+
+        <div class="action-row">
+            <a class="link-button" th:href="@{/account}">Account</a>
+            <a class="link-button link-button-secondary" th:href="@{/shop}">Dashboard</a>
+        </div>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catalog</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<main class="page-shell catalog-shell">
+    <section class="hero-panel catalog-hero">
+        <p class="eyebrow">Workshop catalog</p>
+        <h1>Browse the collection</h1>
+        <p class="lead">Filter by category and jump into individual product pages.</p>
+
+        <div class="action-row category-row">
+            <a class="link-button link-button-secondary" th:href="@{/catalog(category='all')}" th:classappend="${selectedCategory == 'all'} ? ' is-active' : ''">All</a>
+            <a class="link-button link-button-secondary" th:each="category : ${categories}" th:href="@{/catalog(category=${category})}" th:text="${category}" th:classappend="${selectedCategory == category} ? ' is-active' : ''"></a>
+        </div>
+    </section>
+
+    <section class="card catalog-grid">
+        <article class="product-card catalog-card" th:each="product : ${products}">
+            <span class="product-tag" th:text="${product.status}">Featured</span>
+            <h2 th:text="${product.name}">Product Name</h2>
+            <p th:text="${product.description}">Description</p>
+            <div class="card-footer">
+                <strong th:text="${product.price}">$0</strong>
+                <a class="text-link" th:href="@{/product/{id}(id=${product.id})}">View details</a>
+            </div>
+        </article>
+    </section>
+</main>
+</body>
+</html>

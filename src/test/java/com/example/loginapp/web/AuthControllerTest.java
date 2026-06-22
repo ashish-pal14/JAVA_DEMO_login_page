@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 import com.example.loginapp.model.LoginForm;
 import com.example.loginapp.model.SignupForm;
 import com.example.loginapp.service.LoginService;
+import com.example.loginapp.service.ShopService;
 import org.junit.jupiter.api.Test;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
@@ -19,7 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 class AuthControllerTest {
 
     private final LoginService loginService = mock(LoginService.class);
-    private final AuthController authController = new AuthController(loginService);
+    private final ShopService shopService = mock(ShopService.class);
+    private final AuthController authController = new AuthController(loginService, shopService);
 
     @Test
     void showLandingPageReturnsIndexView() {
@@ -74,11 +76,18 @@ class AuthControllerTest {
         BindingResult bindingResult = new BeanPropertyBindingResult(loginForm, "loginForm");
         Model model = new ExtendedModelMap();
         when(loginService.authenticate("admin", "admin123")).thenReturn(true);
+        when(shopService.getFeaturedProducts()).thenReturn(java.util.List.of());
+        when(shopService.getCategories()).thenReturn(java.util.List.of("Tools"));
+        when(shopService.getCartItemCount()).thenReturn(3);
+        when(shopService.getCartTotal()).thenReturn("$0");
 
         String viewName = authController.processLogin(loginForm, bindingResult, model);
 
         assertThat(viewName).isEqualTo("shop");
         assertThat(model.asMap()).containsEntry("username", "admin");
+        assertThat(model.asMap()).containsEntry("categoryCount", 1);
+        assertThat(model.asMap()).containsEntry("cartItemCount", 3);
+        assertThat(model.asMap()).containsEntry("cartTotal", "$0");
         verify(loginService).authenticate("admin", "admin123");
     }
 

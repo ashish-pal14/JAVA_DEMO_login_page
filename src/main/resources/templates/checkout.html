@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<main class="page-shell checkout-shell">
+    <section class="card auth-card">
+        <p class="eyebrow">Checkout</p>
+        <h1>Complete your order</h1>
+        <p class="lead">This checkout flow keeps the form on the server side for a larger routing surface.</p>
+
+        <p class="summary-strip checkout-summary">
+            <span>Current total</span>
+            <strong th:text="${cartTotal}">$0</strong>
+        </p>
+
+        <form th:action="@{/checkout}" th:object="${checkoutForm}" method="post" class="form-grid">
+            <label>
+                <span>Full name</span>
+                <input type="text" th:field="*{fullName}" placeholder="Your name" />
+                <small class="field-error" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></small>
+            </label>
+
+            <label>
+                <span>Email</span>
+                <input type="email" th:field="*{email}" placeholder="you@example.com" />
+                <small class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+            </label>
+
+            <label>
+                <span>Shipping address</span>
+                <textarea th:field="*{shippingAddress}" rows="4" placeholder="Street, city, country"></textarea>
+                <small class="field-error" th:if="${#fields.hasErrors('shippingAddress')}" th:errors="*{shippingAddress}"></small>
+            </label>
+
+            <label>
+                <span>Payment method</span>
+                <select th:field="*{paymentMethod}">
+                    <option value="">Choose one</option>
+                    <option value="card">Card</option>
+                    <option value="cash">Cash on delivery</option>
+                    <option value="wallet">Digital wallet</option>
+                </select>
+                <small class="field-error" th:if="${#fields.hasErrors('paymentMethod')}" th:errors="*{paymentMethod}"></small>
+            </label>
+
+            <button type="submit">Place order</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<main class="page-shell center">
+    <section class="card auth-card">
+        <p class="eyebrow">Support desk</p>
+        <h1>Need help?</h1>
+        <p class="lead">Send a message and we will respond with workshop advice or order help.</p>
+
+        <div class="success" th:if="${supportMessage}" th:text="${supportMessage}"></div>
+
+        <form th:action="@{/support}" th:object="${supportForm}" method="post" class="form-grid">
+            <label>
+                <span>Name</span>
+                <input type="text" th:field="*{name}" placeholder="Your name" />
+                <small class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+            </label>
+
+            <label>
+                <span>Email</span>
+                <input type="email" th:field="*{email}" placeholder="you@example.com" />
+                <small class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+            </label>
+
+            <label>
+                <span>Topic</span>
+                <input type="text" th:field="*{topic}" placeholder="Order, product, delivery..." />
+                <small class="field-error" th:if="${#fields.hasErrors('topic')}" th:errors="*{topic}"></small>
+            </label>
+
+            <label>
+                <span>Message</span>
+                <textarea th:field="*{message}" rows="4" placeholder="Tell us what you need"></textarea>
+                <small class="field-error" th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></small>
+            </label>
+
+            <button type="submit">Send message</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>

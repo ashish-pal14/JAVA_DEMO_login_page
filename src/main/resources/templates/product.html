@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Detail</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<main class="page-shell detail-shell">
+    <section class="hero-panel detail-hero">
+        <p class="eyebrow" th:text="${product.category}">Category</p>
+        <h1 th:text="${product.name}">Product Name</h1>
+        <p class="lead" th:text="${product.description}">Description</p>
+
+        <div class="detail-meta">
+            <span th:text="${product.status}">Status</span>
+            <strong th:text="${product.price}">$0</strong>
+        </div>
+
+        <div class="action-row">
+            <a class="link-button" th:href="@{/cart}">Add to cart</a>
+            <a class="link-button link-button-secondary" th:href="@{/catalog}">Back to catalog</a>
+        </div>
+    </section>
+
+    <section class="card related-panel">
+        <p class="eyebrow">Related products</p>
+        <div class="related-list">
+            <article th:each="related : ${relatedProducts}">
+                <h2 th:text="${related.name}">Related</h2>
+                <p th:text="${related.price}">$0</p>
+            </article>
+        </div>
+    </section>
+</main>
+</body>
+</html>

@@ -7,38 +7,46 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
-<main class="page-shell shop-shell">
-    <section class="hero-panel shop-hero">
+<main class="page-shell dashboard-shell">
+    <section class="hero-panel dashboard-hero">
         <p class="eyebrow">Signed in successfully</p>
         <h1>Welcome, <span th:text="${username}">user</span></h1>
-        <p class="lead">You are now inside the workshop store. Browse tools, materials, and featured kits.</p>
+        <p class="lead">You are now inside the workshop store dashboard with catalog, cart, orders, and support routes.</p>
 
-        <div class="action-row">
-            <a class="link-button" th:href="@{/}">Back to home</a>
-            <a class="link-button link-button-secondary" th:href="@{/login}">Sign out</a>
+        <div class="dashboard-stats">
+            <article>
+                <strong th:text="${categoryCount}">0</strong>
+                <span>Categories</span>
+            </article>
+            <article>
+                <strong th:text="${cartItemCount}">0</strong>
+                <span>Items in cart</span>
+            </article>
+            <article>
+                <strong th:text="${cartTotal}">$0</strong>
+                <span>Cart total</span>
+            </article>
+        </div>
+
+        <div class="action-row nav-row">
+            <a class="link-button" th:href="@{/catalog}">Catalog</a>
+            <a class="link-button link-button-secondary" th:href="@{/cart}">Cart</a>
+            <a class="link-button link-button-secondary" th:href="@{/orders}">Orders</a>
+            <a class="link-button link-button-secondary" th:href="@{/support}">Support</a>
         </div>
     </section>
 
     <section class="card shop-grid">
-        <article class="shop-item">
-            <span>01</span>
+        <p class="eyebrow">Featured products</p>
+        <article class="shop-item" th:each="product : ${featuredProducts}">
+            <span th:text="${product.status}">Hot</span>
             <div>
-                <h2>Workbench Essentials</h2>
-                <p>Starter tools for every new project.</p>
-            </div>
-        </article>
-        <article class="shop-item">
-            <span>02</span>
-            <div>
-                <h2>Storage & Organization</h2>
-                <p>Smart shelving and storage for a cleaner shop.</p>
-            </div>
-        </article>
-        <article class="shop-item">
-            <span>03</span>
-            <div>
-                <h2>Project Materials</h2>
-                <p>Wood, hardware, and supplies ready to use.</p>
+                <h2 th:text="${product.name}">Product</h2>
+                <p th:text="${product.description}">Description</p>
+                <div class="card-footer">
+                    <strong th:text="${product.price}">$0</strong>
+                    <a class="text-link" th:href="@{/product/{id}(id=${product.id})}">Open</a>
+                </div>
             </div>
         </article>
     </section>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<main class="page-shell center">
+    <section class="card wide-card">
+        <p class="eyebrow">About the store</p>
+        <h1>Built for makers</h1>
+        <p class="lead">This demo app models a fuller storefront with multiple routes, forms, and in-memory business data.</p>
+
+        <div class="about-grid">
+            <article>
+                <h2>Catalog</h2>
+                <p>Products, categories, and detail pages.</p>
+            </article>
+            <article>
+                <h2>Commerce flow</h2>
+                <p>Cart, checkout, and confirmation screens.</p>
+            </article>
+            <article>
+                <h2>Customer care</h2>
+                <p>Accounts, orders, and support endpoints.</p>
+            </article>
+        </div>
+
+        <div class="action-row">
+            <a class="link-button" th:href="@{/catalog}">Browse catalog</a>
+            <a class="link-button link-button-secondary" th:href="@{/shop}">Back to dashboard</a>
+        </div>
+    </section>
+</main>
+</body>
+</html>
